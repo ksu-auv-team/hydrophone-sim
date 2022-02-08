@@ -421,6 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound_speed_water: 1480
   pinger: {fileID: 1644200462}
+  uid: 0
   spawn_distance: 2
 --- !u!54 &388068686
 Rigidbody:
@@ -555,6 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound_speed_water: 1480
   pinger: {fileID: 1644200462}
+  uid: 2
   spawn_distance: 0
 --- !u!135 &501611945
 SphereCollider:
@@ -766,6 +768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound_speed_water: 1480
   pinger: {fileID: 1644200462}
+  uid: 1
   spawn_distance: 0
 --- !u!135 &1021457109
 SphereCollider:

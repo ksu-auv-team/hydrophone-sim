@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Kirby : MonoBehaviour
 {
     List<long> hydrophone_times = new List<long>();
+    Dictionary<int, long> hydrophone = new Dictionary<int, long>();
     float rotation_degreeeeeee = 0;
 
     // Start is called before the first frame update
@@ -32,7 +34,14 @@ public class Kirby : MonoBehaviour
                     if (child.gameObject.GetComponent<Hydrophone>().GetGot() && child.gameObject.GetComponent<Hydrophone>().ToggleGot())
                     {
                         Debug.Log("TRUE");
-                        hydrophone_times.Add(child.gameObject.GetComponent<Hydrophone>().GetTimeElapseMilisec());
+                        long time_ms = child.gameObject.GetComponent<Hydrophone>().GetTimeElapseMilisec();
+                        int uid = child.gameObject.GetComponent<Hydrophone>().uid;
+                        hydrophone_times.Add(time_ms);
+                        GameObject test = child.gameObject;
+                        Debug.Log("uid " + uid + " time_ms " + time_ms);
+                        hydrophone.Add(uid, time_ms);
+                        Debug.Log("hydro count " + hydrophone.Count);
+                        //child.gameObject.
                     }
                     else
                     {
@@ -41,10 +50,13 @@ public class Kirby : MonoBehaviour
                     }
                 }
             }
+
         } //endif hydrophone_times > 3
         else
         {
-            Debug.Log("we gottem bois");
+            //Debug.Log("we gottem bois ");
+
+
         }
            
         /*float foo = this.transform.eulerAngles.y - rotation_degreeeeeee;
@@ -57,6 +69,20 @@ public class Kirby : MonoBehaviour
         if (Input.GetKeyDown("space")) {
             this.transform.Rotate(0, this.transform.rotation.y + 30, 0);
         }*/
+    }
+
+    Dictionary<int, long> sort_hydros()
+    {
+        //      List<GameObject> temp = new List<GameObject>;
+        //hydrophone.
+        Dictionary<int, long> ordered = new Dictionary<int, long>();
+        ordered = hydrophone.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+        foreach (KeyValuePair<int, long> kvp in ordered)
+        {
+            //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+            Debug.Log("Key = " + kvp.Key + " Value = " + kvp.Value);
+        }
+        return ordered;
     }
 
     float Getdegreeeeeee(List<long> hp_list)

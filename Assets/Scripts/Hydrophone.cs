@@ -9,6 +9,7 @@ public class Hydrophone : MonoBehaviour
     // Speed of sound in water
     public float sound_speed_water = 1480f;
     public GameObject pinger;
+    public int uid = 0;
     private Stopwatch timer;
 
     private float time_away;
@@ -41,7 +42,6 @@ public class Hydrophone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHH");
         //Check to see if the tag on the collider is equal to Wave
         if (other.tag == "Wave")
         {
@@ -67,10 +67,6 @@ public class Hydrophone : MonoBehaviour
     // }
     public bool GetGot()
     {
-        if(got)
-        { Debug.Log("GDKLJSDKLJSAIDFASDFASDFASDFASDFASDFASKLJBHNGVJI;A'ER"); 
-        }
-        
         return got;
     }
 
@@ -78,7 +74,6 @@ public class Hydrophone : MonoBehaviour
     {
         if(toggle && got)
         {
-            Debug.Log("WACK");
             toggle = false;
             got = false;
             return true;
